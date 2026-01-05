@@ -64,3 +64,21 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log("Submit clicked");
   });
 });
+
+// --- Clear Button fix (reliable) ---
+document.addEventListener('DOMContentLoaded', () => {
+  const topRow = document.querySelector('.gridRow.topRow');
+  const clearBtn = document.getElementById('clearBtn');
+
+  if (!topRow) return console.error("Top row not found");
+  if (!clearBtn) return console.error("Clear button not found");
+
+  clearBtn.addEventListener('click', () => {
+    console.log("Clear clicked"); // Debug
+    const inputs = topRow.querySelectorAll('input');
+    if (inputs.length >= 2) {
+      inputs[0].value = ""; // Clear title
+      inputs[1].value = ""; // Clear date/time
+    }
+  });
+});
