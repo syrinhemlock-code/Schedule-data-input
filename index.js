@@ -48,14 +48,17 @@ form.addEventListener('submit', (e) => {
   renderSchedule();
 });
 
-// --- Clear Button ---
+// --- Clear Button (fixed) ---
 clearBtn.addEventListener('click', () => {
-  topRow.querySelector('input[name="title0"]').value = "";
-  topRow.querySelector('input[name="datetime0"]').value = "";
+  const inputs = topRow.querySelectorAll('input');
+  if (inputs.length >= 2) {
+    inputs[0].value = ""; // Clear title
+    inputs[1].value = ""; // Clear date/time
+  }
 });
 
 // --- Submit Button Placeholder ---
 submitBtn.addEventListener('click', () => {
-  console.log("Submit clicked");
-  // Future: add code to send schedule to main site / backend
+  console.log("Submit clicked"); // placeholder for future functionality
 });
+
