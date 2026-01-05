@@ -41,11 +41,16 @@ h1 {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+
+   /* New scroll options */
+  max-height: 400px;       /* or whatever height you want */
+  overflow-y: auto;        /* vertical scroll if needed */
 }
 
 .gridRow {
   display: flex;
   gap: 10px;
+  min-width: 0;
 }
 
 .gridRow input[type="text"],
@@ -81,3 +86,4 @@ button {
 button:hover {
   background-color: #773f52;
 }
+
