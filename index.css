@@ -52,6 +52,7 @@ h1 {
   display: flex;
   gap: 10px;
   min-width: 0;
+  align-items: center;
 }
 
 .gridRow input[type="text"],
@@ -71,6 +72,23 @@ h1 {
   background-color: #252525;
   color: #aaa;
   cursor: default;
+}
+
+/* Delete button for readonly rows */
+.deleteBtn {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: #ee5555;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 6px;
+  line-height: 1;
+}
+
+.deleteBtn:hover {
+  color: #ff8888;
 }
 
 /* Top row with Save button */
