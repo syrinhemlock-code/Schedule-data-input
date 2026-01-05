@@ -11,8 +11,9 @@
       <h1>Stream Schedule Entry</h1>
       <form id="scheduleForm">
         <div class="gridSchedule">
-          <!-- Top row = editable -->
-          <div class="gridRow">
+          <!-- Top row = editable with Save button -->
+          <div class="gridRow topRow">
+            <button type="submit" id="saveBtn">Save</button>
             <input type="text" placeholder="Stream Title" name="title0">
             <input type="datetime-local" name="datetime0">
           </div>
@@ -44,7 +45,11 @@
           </div>
         </div>
 
-        <button type="submit">Save Schedule</button>
+        <!-- Bottom buttons: Submit (placeholder) and Clear -->
+        <div class="bottomButtons">
+          <button type="button" id="submitBtn">Submit</button>
+          <button type="button" id="clearBtn">Clear</button>
+        </div>
       </form>
     </div>
   </div>
