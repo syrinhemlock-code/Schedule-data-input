@@ -1,36 +1,32 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // --- References ---
-  const form = document.getElementById('scheduleForm');
   const topRow = document.querySelector('.gridRow.topRow');
-  const rows = Array.from(document.querySelectorAll('.gridRow')).slice(1); // rows 1–6
-  const saveBtn = document.getElementById('saveBtn');
-  const submitBtn = document.getElementById('submitBtn');
+  const rows = Array.from(document.querySelectorAll('.gridRow')).slice(1); // readonly rows
   const clearBtn = document.getElementById('clearBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('scheduleForm');
 
-  // --- Initialize schedule array for rows 1–6 ---
-  let schedule = [];
-  for (let i = 0; i < rows.length; i++) {
-    schedule.push({ title: "", datetime: "" });
-  }
+  // Initialize schedule array
+  let schedule = rows.map(() => ({ title: "", datetime: "" }));
 
-  // --- Function to render schedule in readonly rows ---
+  // Render schedule in rows
   function renderSchedule() {
     rows.forEach((row, idx) => {
+      const entry = schedule[idx];
       const inputs = row.querySelectorAll('input');
-      inputs[0].value = schedule[idx].title;
-      inputs[1].value = schedule[idx].datetime;
+      inputs[0].value = entry.title;
+      inputs[1].value = entry.datetime;
     });
-    attachDeleteEvents(); // reattach delete buttons after render
+    attachDeleteEvents(); // reattach delete button handlers
   }
 
-  // --- Attach delete events to each row ---
+  // Attach delete button handlers
   function attachDeleteEvents() {
     rows.forEach((row, idx) => {
       const delBtn = row.querySelector('.deleteBtn');
       if (!delBtn) return;
-
       delBtn.onclick = () => {
-        schedule.splice(idx, 1); // remove this entry
+        // Clear the entry
+        schedule[idx] = { title: "", datetime: "" };
         renderSchedule();
       };
     });
@@ -39,42 +35,32 @@ window.addEventListener('DOMContentLoaded', () => {
   // Initial render
   renderSchedule();
 
-  // --- Save Button / Form Submit ---
+  // Save button functionality
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const inputs = topRow.querySelectorAll('input');
-    const titleInput = inputs[0].value.trim();
-    const datetimeInput = inputs[1].value;
+    const title = inputs[0].value.trim();
+    const datetime = inputs[1].value;
 
-    if (!titleInput || !datetimeInput) {
-      alert("Please fill in both title and date/time!");
-      return;
-    }
+    if (!title || !datetime) return alert("Please fill in both title and date/time!");
 
-    // Shift schedule down
-    schedule.pop(); // remove oldest (bottom)
-    schedule.unshift({ title: titleInput, datetime: datetimeInput }); // add new at top
+    schedule.pop(); // remove last
+    schedule.unshift({ title, datetime }); // add new at top
 
-    // Clear top row inputs
+    // Clear top row
     inputs[0].value = "";
     inputs[1].value = "";
 
-    // Re-render readonly rows
     renderSchedule();
   });
 
-  // --- Clear Button ---
+  // Clear top row
   clearBtn.addEventListener('click', () => {
     const inputs = topRow.querySelectorAll('input');
-    if (inputs.length >= 2) {
-      inputs[0].value = ""; // Clear title
-      inputs[1].value = ""; // Clear date/time
-    }
+    inputs[0].value = "";
+    inputs[1].value = "";
   });
 
-  // --- Submit Button Placeholder ---
-  submitBtn.addEventListener('click', () => {
-    console.log("Submit clicked");
-  });
+  // Submit placeholder
+  submitBtn.addEventListener('click', () => console.log("Submit clicked"));
 });
