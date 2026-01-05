@@ -1,46 +1,55 @@
 /* Reset */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   background-color: #1a1a1a;
   color: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.container {
-  width: 400px;
-  padding: 20px;
+.center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.content {
   background-color: #2c2c2c;
+  padding: 20px 30px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  text-align: center;
+  width: 400px;
 }
 
 h1 {
+  text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
 }
 
-.grid {
+.gridSchedule {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.row {
+.gridRow {
   display: flex;
   gap: 10px;
 }
 
-.row input[type="text"],
-.row input[type="datetime-local"] {
+.gridRow input[type="text"],
+.gridRow input[type="datetime-local"] {
   flex: 1;
   padding: 8px;
   border-radius: 5px;
@@ -51,8 +60,15 @@ h1 {
   color: #eee;
 }
 
+.gridRow input[readonly] {
+  background-color: #252525;
+  color: #aaa;
+  cursor: default;
+}
+
 button {
-  padding: 10px 20px;
+  width: 100%;
+  padding: 10px 0;
   font-size: 16px;
   border-radius: 5px;
   border: none;
