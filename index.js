@@ -6,17 +6,18 @@ window.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('scheduleForm');
 
   // Initialize schedule array
-  let schedule = rows.map(() => ({ title: "", datetime: "" }));
+  let schedule = JSON.parse(localStorage.getItem('schedule')) || rows.map(() => ({ title: "", datetime: "" }));
 
   // Render schedule in rows
   function renderSchedule() {
     rows.forEach((row, idx) => {
-      const entry = schedule[idx];
+      const entry = schedule[idx] || { title: "", datetime: "" };
       const inputs = row.querySelectorAll('input');
       inputs[0].value = entry.title;
       inputs[1].value = entry.datetime;
     });
     attachDeleteEvents(); // reattach delete button handlers
+    localStorage.setItem('schedule', JSON.stringify(schedule));
   }
 
   // Attach delete button handlers
@@ -25,8 +26,9 @@ window.addEventListener('DOMContentLoaded', () => {
       const delBtn = row.querySelector('.deleteBtn');
       if (!delBtn) return;
       delBtn.onclick = () => {
-        // Clear the entry
-        schedule[idx] = { title: "", datetime: "" };
+        // Remove the entry and shift up
+        schedule.splice(idx, 1);
+        schedule.push({ title: "", datetime: "" }); // keep array length 6
         renderSchedule();
       };
     });
