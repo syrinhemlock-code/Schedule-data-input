@@ -1,36 +1,42 @@
-const form = document.getElementById('scheduleForm');
-const rows = Array.from(document.querySelectorAll('.row'));
+// Get references
+let countdown = document.getElementById("Countdown");
+let gridSchedule = document.getElementById("gridSchedule");
+let streamNowEle = document.getElementById("streamNow");
+let streamCountdownEle = document.getElementById("streamCountdown");
+let updateCountdownTimer;
 
-// Initialize schedule array with 7 empty slots
-let schedule = [
-  { title: "", datetime: "" },
-  { title: "", datetime: "" },
-  { title: "", datetime: "" },
-  { title: "", datetime: "" },
-  { title: "", datetime: "" },
-  { title: "", datetime: "" },
-  { title: "", datetime: "" }
-];
+// Grab all rows
+const rows = Array.from(document.querySelectorAll('.gridRow'));
 
-// Function to render the schedule to the rows
+// Keep top row as editable input
+const topRow = rows[0];
+
+// Initialize schedule array (rows 1–6)
+let schedule = [];
+for (let i = 1; i < 7; i++) {
+  schedule.push({ title: "", datetime: "" });
+}
+
+// Function to render schedule into readonly rows
 function renderSchedule() {
-  for (let i = 0; i < 7; i++) {
-    rows[i].querySelector('input[type="text"]').value = schedule[i].title;
-    rows[i].querySelector('input[type="datetime-local"]').value = schedule[i].datetime;
+  for (let i = 1; i < 7; i++) {
+    const inputs = rows[i].querySelectorAll('input');
+    inputs[0].value = schedule[i - 1].title;
+    inputs[1].value = schedule[i - 1].datetime;
   }
 }
 
-// On page load, render initial schedule
+// Initial render
 renderSchedule();
 
-// Handle form submit
+// Form submit
+const form = document.getElementById('scheduleForm');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // Take top row input
   const newEntry = {
-    title: form.title0.value,
-    datetime: form.datetime0.value
+    title: topRow.querySelector('input[name="title0"]').value,
+    datetime: topRow.querySelector('input[name="datetime0"]').value
   };
 
   if (!newEntry.title || !newEntry.datetime) {
@@ -39,13 +45,13 @@ form.addEventListener('submit', (e) => {
   }
 
   // Shift schedule down
-  schedule.pop(); // remove last entry
-  schedule.unshift(newEntry); // add new entry to top
+  schedule.pop();           // remove oldest (bottom) entry
+  schedule.unshift(newEntry); // add new entry at top
 
-  // Clear top row inputs
-  form.title0.value = "";
-  form.datetime0.value = "";
+  // Clear top row
+  topRow.querySelector('input[name="title0"]').value = "";
+  topRow.querySelector('input[name="datetime0"]').value = "";
 
-  // Re-render all rows
+  // Render all readonly rows
   renderSchedule();
 });
