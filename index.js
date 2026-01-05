@@ -20,6 +20,20 @@ window.addEventListener('DOMContentLoaded', () => {
       inputs[0].value = schedule[idx].title;
       inputs[1].value = schedule[idx].datetime;
     });
+    attachDeleteEvents(); // reattach delete buttons after render
+  }
+
+  // --- Attach delete events to each row ---
+  function attachDeleteEvents() {
+    rows.forEach((row, idx) => {
+      const delBtn = row.querySelector('.deleteBtn');
+      if (!delBtn) return;
+
+      delBtn.onclick = () => {
+        schedule.splice(idx, 1); // remove this entry
+        renderSchedule();
+      };
+    });
   }
 
   // Initial render
@@ -50,7 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
     renderSchedule();
   });
 
-  // --- Clear Button (fixed) ---
+  // --- Clear Button ---
   clearBtn.addEventListener('click', () => {
     const inputs = topRow.querySelectorAll('input');
     if (inputs.length >= 2) {
@@ -62,23 +76,5 @@ window.addEventListener('DOMContentLoaded', () => {
   // --- Submit Button Placeholder ---
   submitBtn.addEventListener('click', () => {
     console.log("Submit clicked");
-  });
-});
-
-// --- Clear Button fix (reliable) ---
-document.addEventListener('DOMContentLoaded', () => {
-  const topRow = document.querySelector('.gridRow.topRow');
-  const clearBtn = document.getElementById('clearBtn');
-
-  if (!topRow) return console.error("Top row not found");
-  if (!clearBtn) return console.error("Clear button not found");
-
-  clearBtn.addEventListener('click', () => {
-    console.log("Clear clicked"); // Debug
-    const inputs = topRow.querySelectorAll('input');
-    if (inputs.length >= 2) {
-      inputs[0].value = ""; // Clear title
-      inputs[1].value = ""; // Clear date/time
-    }
   });
 });
