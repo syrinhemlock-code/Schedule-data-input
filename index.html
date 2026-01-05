@@ -1,49 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Stream Schedule Entry</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Stream Schedule Entry</h1>
-    <form id="scheduleForm">
-      <div class="grid">
-        <!-- 7 slots -->
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title0">
-          <input type="datetime-local" name="datetime0">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title1">
-          <input type="datetime-local" name="datetime1">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title2">
-          <input type="datetime-local" name="datetime2">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title3">
-          <input type="datetime-local" name="datetime3">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title4">
-          <input type="datetime-local" name="datetime4">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title5">
-          <input type="datetime-local" name="datetime5">
-        </div>
-        <div class="row">
-          <input type="text" placeholder="Stream Title" name="title6">
-          <input type="datetime-local" name="datetime6">
-        </div>
-      </div>
-      <button type="submit">Save Schedule</button>
-    </form>
+<div class="grid">
+  <!-- Top row = editable -->
+  <div class="row">
+    <input type="text" placeholder="Stream Title" name="title0">
+    <input type="datetime-local" name="datetime0">
   </div>
 
-  <script src="index.js"></script>
-</body>
-</html>
+  <!-- Remaining 6 rows = read-only -->
+  <div class="row">
+    <input type="text" readonly>
+    <input type="datetime-local" readonly>
+  </div>
+  <div class="row">
+    <input type="text" readonly>
+    <input type="datetime-local" readonly>
+  </div>
+  <div class="row">
+    <input type="text" readonly>
+    <input type="datetime-local" readonly>
+  </div>
+  <div class="row">
+    <input type="text" readonly>
+    <input type="datetime-local" readonly>
+  </div>
+  <div class="row">
+    <input type="text" readonly>
+    <input type="datetime-local" readonly>
+  </div>
+  <div class="row">
+    <input type="text" readonly>
+    <input type="datetime-local" readonly>
+  </div>
+</div>
