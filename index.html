@@ -1,31 +1,54 @@
-<!-- Top row = editable -->
-<div class="gridRow">
-  <input type="text" placeholder="Stream Title" name="title0">
-  <input type="datetime-local" name="datetime0">
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stream Schedule Entry</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="center-div">
+    <div class="content">
+      <h1>Stream Schedule Entry</h1>
+      <form id="scheduleForm">
+        <div class="gridSchedule">
+          <!-- Top row = editable -->
+          <div class="gridRow">
+            <input type="text" placeholder="Stream Title" name="title0">
+            <input type="datetime-local" name="datetime0">
+          </div>
 
-<!-- All other rows = readonly -->
-<div class="gridRow">
-  <input type="text" readonly>
-  <input type="datetime-local" readonly>
-</div>
-<div class="gridRow">
-  <input type="text" readonly>
-  <input type="datetime-local" readonly>
-</div>
-<div class="gridRow">
-  <input type="text" readonly>
-  <input type="datetime-local" readonly>
-</div>
-<div class="gridRow">
-  <input type="text" readonly>
-  <input type="datetime-local" readonly>
-</div>
-<div class="gridRow">
-  <input type="text" readonly>
-  <input type="datetime-local" readonly>
-</div>
-<div class="gridRow">
-  <input type="text" readonly>
-  <input type="datetime-local" readonly>
-</div>
+          <!-- Rows 1–6 = readonly -->
+          <div class="gridRow">
+            <input type="text" readonly>
+            <input type="datetime-local" readonly>
+          </div>
+          <div class="gridRow">
+            <input type="text" readonly>
+            <input type="datetime-local" readonly>
+          </div>
+          <div class="gridRow">
+            <input type="text" readonly>
+            <input type="datetime-local" readonly>
+          </div>
+          <div class="gridRow">
+            <input type="text" readonly>
+            <input type="datetime-local" readonly>
+          </div>
+          <div class="gridRow">
+            <input type="text" readonly>
+            <input type="datetime-local" readonly>
+          </div>
+          <div class="gridRow">
+            <input type="text" readonly>
+            <input type="datetime-local" readonly>
+          </div>
+        </div>
+
+        <button type="submit">Save Schedule</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="index.js" defer></script>
+</body>
+</html>
