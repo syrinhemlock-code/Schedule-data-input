@@ -36,15 +36,16 @@ h1 {
   font-size: 24px;
 }
 
+/* Schedule grid */
 .gridSchedule {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 
-   /* New scroll options */
-  max-height: 400px;       /* or whatever height you want */
-  overflow-y: auto;        /* vertical scroll if needed */
+  max-height: 400px;   /* vertical scroll limit */
+  overflow-y: auto;    /* vertical scroll if needed */
+  overflow-x: auto;    /* horizontal scroll if needed */
 }
 
 .gridRow {
@@ -55,7 +56,8 @@ h1 {
 
 .gridRow input[type="text"],
 .gridRow input[type="datetime-local"] {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 120px;
   padding: 8px;
   border-radius: 5px;
   border: none;
@@ -71,10 +73,17 @@ h1 {
   cursor: default;
 }
 
-button {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
+/* Top row with Save button */
+.gridRow.topRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.gridRow.topRow button {
+  flex: 0 0 auto;   /* button keeps its size */
+  padding: 8px 12px;
+  font-size: 14px;
   border-radius: 5px;
   border: none;
   background-color: #552a3d;
@@ -83,7 +92,30 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.gridRow.topRow button:hover {
   background-color: #773f52;
 }
 
+/* Bottom Submit and Clear buttons */
+.bottomButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.bottomButtons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px 0;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  background-color: #552a3d;
+  color: #eee;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bottomButtons button:hover {
+  background-color: #773f52;
+}
